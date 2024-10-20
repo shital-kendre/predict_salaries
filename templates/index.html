@@ -48,8 +48,8 @@
 
 <h1>Salary Prediction</h1>
 <form id="predictionForm">
-    <label for="YearsExperience">Years of Experience:</label>
-    <input type="number" id="YearsExperience" name="YearsExperience" step="any" required>
+    <label for="yearsExperience">Years of Experience:</label>
+    <input type="number" id="yearsExperience" name="yearsExperience" step="any" required>
     <button type="submit">Predict Salary</button>
 </form>
 
@@ -59,15 +59,15 @@
     document.getElementById('predictionForm').addEventListener('submit', function (e) {
         e.preventDefault(); // Prevent form submission
 
-        const YearsExperience = document.getElementById('YearsExperience').value;
+        const yearsExperience = document.getElementById('yearsExperience').value;
 
-        fetch('http://13.200.237.225:5006/prediction', { // Updated URL
+        fetch('http://13.200.237.225:5006/prediction', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                'YearsExperience': YearsExperience
+                'YearsExperience': yearsExperience // Use the correct key
             })
         })
         .then(response => {
