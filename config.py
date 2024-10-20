@@ -1,6 +1,6 @@
 FLASK_PORT_NUMBER = 5006
 
-CSV_FILE_NAME = r"data\Salary_Data.csv" 
+CSV_FILE_NAME = r"data/Salary_Data.csv" 
 
 MODEL_FILE_NAME = r"artifacts\Salary_linear_reg_model.pkl"
 
