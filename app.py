@@ -18,7 +18,7 @@ def prediction():
     print(f"Received data: {data}")  # Debugging log
 
     try:
-        YearsExperience = float(data['YearsExperience'])
+        YearsExperience = float(data['YearsExperience'])  # Expecting 'YearsExperience' key
         sal_pred = SalaryPrediction()
         predicted_salary = sal_pred.get_salary(YearsExperience)
         print(f"Predicted salary: {predicted_salary}")  # Debugging log
@@ -26,9 +26,13 @@ def prediction():
     except KeyError as e:
         print(f"KeyError: {str(e)}")  # Debugging log
         return jsonify({"error": "Missing data"}), 400
+    except ValueError as e:
+        print(f"ValueError: {str(e)}")  # Debugging log
+        return jsonify({"error": "Invalid number format"}), 400
     except Exception as e:
         print(f"Error: {str(e)}")  # Debugging log
         return jsonify({"error": "An error occurred"}), 500
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=config.FLASK_PORT_NUMBER, debug=True)
