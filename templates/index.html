@@ -7,8 +7,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-image: url('static/images/salary_image.jpeg'); /* Adjust the relative path if necessary */
+            background-size: cover;
+            background-position: center;
             margin: 0;
             padding: 20px;
+            color: #1b1818;
         }
         h1 {
             color: #333;
@@ -21,14 +25,21 @@
             max-width: 400px;
             margin: auto;
         }
-        input[type="number"], button {
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="number"] {
             width: 100%;
             padding: 10px;
             margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         button {
             background: #28a745;
             color: white;
+            padding: 10px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -49,7 +60,7 @@
 <h1>Salary Prediction</h1>
 <form id="predictionForm">
     <label for="yearsExperience">Years of Experience:</label>
-    <input type="number" id="yearsExperience" name="yearsExperience" step="any" required>
+    <input type="number" id="yearsExperience" name="YearsExperience" step="any" required>
     <button type="submit">Predict Salary</button>
 </form>
 
@@ -57,22 +68,22 @@
 
 <script>
     document.getElementById('predictionForm').addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent form submission
+        e.preventDefault(); // Prevent the form from submitting the traditional way
 
         const yearsExperience = document.getElementById('yearsExperience').value;
 
-        fetch('http://13.200.237.225:5006/prediction', {
+        fetch('http://13.200.237.225:5006/prediction', { // Change to your server's IP or domain
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json', // Send as JSON
             },
             body: JSON.stringify({
-                'YearsExperience': yearsExperience // Use the correct key
+                'YearsExperience': yearsExperience // Ensure this matches your backend
             })
         })
         .then(response => {
             if (!response.ok) {
-                return Promise.reject('Error with the response: ' + response.statusText);
+                throw new Error('Network response was not ok ' + response.statusText);
             }
             return response.json();
         })
@@ -81,7 +92,7 @@
         })
         .catch(error => {
             console.error('Error:', error);
-            document.getElementById('result').innerText = 'Error predicting salary: ' + error;
+            document.getElementById('result').innerText = 'Error predicting salary. Please try again.';
         });
     });
 </script>
