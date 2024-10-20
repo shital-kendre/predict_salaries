@@ -7,18 +7,18 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('static/images/salary_image.jpeg'); /* Adjust the relative path if necessary */
-            background-size: cover;
-            background-position: center;
+            background-image: url('static/images/salary_image.jpeg'); /* Adjusted relative path */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
             margin: 0;
             padding: 20px;
-            color: #1b1818;
+            color: #1b1818; /* Set text color to white for visibility */
         }
         h1 {
             color: #333;
         }
         form {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.8); /* White background with some transparency */
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -60,7 +60,7 @@
 <h1>Salary Prediction</h1>
 <form id="predictionForm">
     <label for="yearsExperience">Years of Experience:</label>
-    <input type="number" id="yearsExperience" name="YearsExperience" step="any" required>
+    <input type="number" id="yearsExperience" name="yearsExperience" step="any" required>
     <button type="submit">Predict Salary</button>
 </form>
 
@@ -72,13 +72,13 @@
 
         const yearsExperience = document.getElementById('yearsExperience').value;
 
-        fetch('http://13.200.237.225:5006/prediction', { // Change to your server's IP or domain
+        fetch('http://13.200.237.225/prediction', {  // Your AWS server URL
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json', // Send as JSON
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({
-                'YearsExperience': yearsExperience // Ensure this matches your backend
+            body: new URLSearchParams({
+                'YearsExperience': yearsExperience  // Use the correct key
             })
         })
         .then(response => {
