@@ -6,7 +6,7 @@ Flask-Cors==5.0.0
 
 ipython==8.15.0
 
-json5==0.9.14
+json==0.9.14
 
 
 numpy==1.26.2
