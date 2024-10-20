@@ -3,7 +3,7 @@ from utils import SalaryPrediction, load_dataset
 import config
 from flask_cors import CORS
 
-df = load_dataset()
+# df = load_dataset()
 
 app = Flask(__name__)
 CORS(app)
