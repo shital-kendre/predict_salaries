@@ -1,4 +1,4 @@
-FLASK_PORT_NUMBER = 8080
+FLASK_PORT_NUMBER = 5006
 
 CSV_FILE_NAME = r"data\Salary_Data.csv" 
 
