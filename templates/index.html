@@ -7,18 +7,18 @@
     <style> 
         body {
             font-family: Arial, sans-serif;
-            background-image: url('../static/images/salary_image.jpeg'); /* Adjusted relative path */
-            background-size: cover; /* Cover the entire viewport */
-            background-position: center; /* Center the image */
+            background-image: url('/static/images/salary_image.jpeg'); /* Corrected path */
+            background-size: cover; 
+            background-position: center; 
             margin: 0;
             padding: 20px;
-            color: #1b1818; /* Set text color to white for visibility */
+            color: #1b1818; 
         }
         h1 {
             color: #333;
         }
         form {
-            background: rgba(255, 255, 255, 0.8); /* White background with some transparency */
+            background: rgba(255, 255, 255, 0.8); 
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -60,7 +60,7 @@
 <h1>Salary Prediction</h1>
 <form id="predictionForm">
     <label for="yearsExperience">Years of Experience:</label>
-    <input type="number" id="yearsExperience" name="yearsExperience" step="any" required>
+    <input type="number" id="yearsExperience" name="YearsExperience" step="any" required> <!-- Match key -->
     <button type="submit">Predict Salary</button>
 </form>
 
@@ -68,11 +68,11 @@
 
 <script>
     document.getElementById('predictionForm').addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent the form from submitting the traditional way
+        e.preventDefault(); 
 
         const yearsExperience = document.getElementById('yearsExperience').value;
 
-        fetch('http://127.0.0.1:5006/prediction', {
+        fetch('http://20.244.85.118:5006/prediction', {  // Use your server IP address
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
