@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salary Prediction</title>
-    <style>
+    <style> 
         body {
             font-family: Arial, sans-serif;
-            background-image: url('static/images/salary_image.jpeg'); /* Adjusted relative path */
+            background-image: url('../static/images/salary_image.jpeg'); /* Adjusted relative path */
             background-size: cover; /* Cover the entire viewport */
             background-position: center; /* Center the image */
             margin: 0;
@@ -72,21 +72,16 @@
 
         const yearsExperience = document.getElementById('yearsExperience').value;
 
-        fetch('http://13.200.237.225/prediction', {  // Your AWS server URL
+        fetch('http://127.0.0.1:5006/prediction', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams({
-                'YearsExperience': yearsExperience  // Use the correct key
+                'YearsExperience': yearsExperience
             })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             document.getElementById('result').innerText = 'Predicted Salary: $' + data['predicted salary'];
         })
